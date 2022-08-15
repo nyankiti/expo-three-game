@@ -1,57 +1,48 @@
-import { useEffect } from "react";
-import { View, TouchableWithoutFeedback, Text, StyleSheet } from "react-native";
-import { GLView, ExpoWebGLRenderingContext } from "expo-gl";
-import * as THREE from "three";
-import * as ExpoTHREE from "expo-three";
-/* components */
-import SphereMesh from "./components/SphereMesh";
+import { useEffect, useState } from "react";
+import { StatusBar } from "react-native";
+import { ActionSheetProvider } from "@expo/react-native-action-sheet";
+import { RecoilRoot } from "recoil";
+import * as Font from "expo-font";
+import * as Analytics from "expo-firebase-analytics";
+import AudioManager from "./AudioManager";
+import Navigation from "./Navigation";
 
 // @ts-ignore
 const getNow = global.nativePerformanceNow ?? Date.now;
 
 export default function App() {
-  let gl: ExpoWebGLRenderingContext;
-  let renderer: ExpoTHREE.Renderer;
-  let scene: THREE.Scene;
-  let camera: THREE.PerspectiveCamera;
+  const [loading, setLoading] = useState(true);
 
-  const render = () => {
-    renderer.render(scene, camera);
-    gl.endFrameEXP();
-  };
-
-  const contextCreateHandler = (ctx: ExpoWebGLRenderingContext) => {
-    gl = ctx;
-    const { drawingBufferWidth: width, drawingBufferHeight: height } = gl;
-
-    // レンダラーの作成
-    renderer = new ExpoTHREE.Renderer({ gl });
-    renderer.setSize(width, height);
-
-    // シーンの作成
-    scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(70, width / height, 0.01, 1000);
-    camera.position.set(0, 1, 4);
-
-    // 立方体の作成
-    const boxGeo = new THREE.BoxGeometry(1, 1, 1);
-    const boxMat = new THREE.MeshLambertMaterial({ color: "gray" });
-    const boxMsh = new THREE.Mesh(boxGeo, boxMat);
-    boxMsh.position.set(0, 0, 0);
-    boxMsh.rotation.set(0, 0.5, 0);
-    scene.add(boxMsh);
-
-    // ライトの作成
-    const light = new THREE.DirectionalLight();
-    light.position.set(0, 3, 4);
-    light.target.position.set(0, 0, 0);
-    scene.add(light);
-
-    render();
-  };
+  useEffect(() => {
+    StatusBar.setBarStyle("light-content", true);
+    Fire.init();
+    (async () => {
+      console.time("Setup");
+      let time = getNow();
+      try {
+        await Promise.all([
+          Font.loadAsync({
+            "GothamNarrow-Book": require("./assets/fonts/GothamNarrow-Book.ttf"),
+          }),
+          AudioManager.setupAsync(),
+        ]);
+      } catch (error) {
+        console.log("Error loading fonts and audio!");
+        Analytics.logEvent("error_loading_assets", { error });
+        console.error(error);
+      } finally {
+        const total = getNow() - time;
+        Analytics.logEvent("assets_loaded", { milliseconds: total });
+        console.timeEnd("Setup");
+      }
+      setLoading(false);
+    })();
+  }, []);
   return (
-    // onContextCreate関数は、GLパラメータを受け取り、それを使ってシーンを作成し、
-    // ライト、オブジェクト、カメラ、床など、他のものを追加するためにインスタンス化する役割を担っています。
-    <GLView style={{ flex: 1 }} onContextCreate={contextCreateHandler}></GLView>
+    <RecoilRoot>
+      <ActionSheetProvider>
+        <Navigation />
+      </ActionSheetProvider>
+    </RecoilRoot>
   );
 }
