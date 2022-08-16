@@ -1,7 +1,8 @@
-import { atom, useRecoilState } from "recoil";
+import { atom, useRecoilState, useRecoilValue } from "recoil";
 
-export const muted = atom<number>({
+export const muted = atom<boolean>({
   key: "muted",
-  default: 0,
+  default: false,
 });
 export const useMutedState = () => useRecoilState(muted);
+export const useMutedValue = () => useRecoilValue(muted);

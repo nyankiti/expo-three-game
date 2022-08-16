@@ -4,11 +4,11 @@ import { Platform } from "react-native";
 
 const audio = {
   // Common
-  "button_in.wav": require("./assets/audio/button_in.wav"),
-  "button_out.wav": require("./assets/audio/button_out.wav"),
-  "unlock.mp3": require("./assets/audio/unlock.mp3"),
+  "button_in.wav": require("../assets/audio/button_in.wav"),
+  "button_out.wav": require("../assets/audio/button_out.wav"),
+  "unlock.mp3": require("../assets/audio/unlock.mp3"),
   // Pillar Valley
-  "song.mp3": require("./assets/audio/song.mp3"),
+  "song.mp3": require("../assets/audio/song.mp3"),
   // Nitro Roll
   // "bass_00.mp3": require("./NitroRoll/audio/bass_00.mp3"),
 };
@@ -20,8 +20,8 @@ class AudioManager {
   // mutedをrecoilのstateに変更し、stateを呼び出し元から渡すように変更
   playAsync = async (
     name: string,
-    isLooping: boolean = false,
-    muted: boolean
+    muted: boolean,
+    isLooping: boolean = false
   ) => {
     if (muted || Platform.OS === "web") {
       return;
