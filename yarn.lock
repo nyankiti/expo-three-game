@@ -1830,6 +1830,11 @@
     "@types/react" "*"
     hoist-non-react-statics "^3.3.0"
 
+"@types/invariant@^2.2.35":
+  version "2.2.35"
+  resolved "https://registry.yarnpkg.com/@types/invariant/-/invariant-2.2.35.tgz#cd3ebf581a6557452735688d8daba6cf0bd5a3be"
+  integrity sha512-DxX1V9P8zdJPYQat1gHyY0xj3efl8gnMVjiM9iCY6y27lj+PoQWkgjt8jDqmovPqULkKVpKRg8J36iQiA+EtEg==
+
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0":
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/@types/istanbul-lib-coverage/-/istanbul-lib-coverage-2.0.4.tgz#8467d4b3c087805d63580480890791277ce35c44"
@@ -1891,6 +1896,11 @@
   integrity sha512-c5PonXOt8xk5q4ygmyjOX4Ec+FA7gwfdcMT/PveE9xrJs/0DDcf2lJkWrhEcmvx2ZefQCQBcogABnGqB0P4OsA==
   dependencies:
     "@types/webxr" "*"
+
+"@types/uuid@8.3.4":
+  version "8.3.4"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-8.3.4.tgz#bd86a43617df0594787d38b735f55c805becf1bc"
+  integrity sha512-c/I8ZRb51j+pYGAu5CrFMRxqZ2ke4y2grEBO5AUjgSkSk+qT2Ea+OdWElz/OiMf5MNpn2b17kuVBwZLQJXzihw==
 
 "@types/webxr@*":
   version "0.5.0"
@@ -3214,6 +3224,16 @@ expo-av@^12.0.4:
   dependencies:
     "@expo/config-plugins" "~5.0.0"
 
+expo-blur@~11.2.0:
+  version "11.2.0"
+  resolved "https://registry.yarnpkg.com/expo-blur/-/expo-blur-11.2.0.tgz#8f5615e978b801c4e336b5294b72c127d8663b89"
+  integrity sha512-bj16aFGqsp7amJZiLvZt2nuwpKVJNCRcf/1c6NaCNrXCnXt/J8MloachNV0VoiiNKfKDV6EJTn+Jwo1sctchCA==
+
+expo-clipboard@~3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/expo-clipboard/-/expo-clipboard-3.1.0.tgz#ff4b7a2a796488d3784ca8a40229a37bbcb7b65e"
+  integrity sha512-0cnmySP43VnpSWONn+1yIvPT0dwJWzCaPZcOZVxuH5mLhNi4p3UDLJFZt94tu4+bnyvDKjWxCK2/LoCM0XdwwQ==
+
 expo-constants@~13.2.0, expo-constants@~13.2.2, expo-constants@~13.2.3:
   version "13.2.3"
   resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-13.2.3.tgz#526711851d8ebec1f0b1f06d9b91271b119e4f33"
@@ -3276,6 +3296,11 @@ expo-gl@^11.4.0:
     expo-gl-cpp "~11.4.0"
     invariant "^2.2.4"
 
+expo-haptics@~11.3.0:
+  version "11.3.0"
+  resolved "https://registry.yarnpkg.com/expo-haptics/-/expo-haptics-11.3.0.tgz#74283bd212a86f16ff2d6b0125e2a9604c940523"
+  integrity sha512-mQYSZsJ7LcdM2b8JecrV2qEw9ymNzGleS/+bpufdHZ+n5tCnWZXiMvZFFczaExHfaeGY3nGQvH1RjEOFIXSfig==
+
 expo-keep-awake@~10.2.0:
   version "10.2.0"
   resolved "https://registry.yarnpkg.com/expo-keep-awake/-/expo-keep-awake-10.2.0.tgz#46f04740bccd321732bbbed93491e2076d5dbbd7"
@@ -3309,6 +3334,14 @@ expo-modules-core@0.11.3:
   integrity sha512-1it+0fxugTWkof3E5vY23jZrl+ULy8d7OyUKL3+nTxTq98wGJdg9VellT18WvvS2YfKqLzYl31fkQsxFz5rRLA==
   dependencies:
     compare-versions "^3.4.0"
+    invariant "^2.2.4"
+
+expo-sensors@~11.4.0:
+  version "11.4.0"
+  resolved "https://registry.yarnpkg.com/expo-sensors/-/expo-sensors-11.4.0.tgz#9794df759d0b946ec5d5b551b0036c63aada18af"
+  integrity sha512-49en5PJLjphYClHdhanqTu8zj4cpX4Mc/TJQjamonJAqWm2EA1Hg8TVh3XN3J3TFnmZaG8AwWbQG4R8wXmjOmg==
+  dependencies:
+    "@expo/config-plugins" "~5.0.0"
     invariant "^2.2.4"
 
 expo-status-bar@~1.4.0:
@@ -6990,6 +7023,11 @@ utils-merge@1.0.1:
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
   integrity sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==
 
+uuid@8.3.2, uuid@^8.0.0, uuid@^8.3.2:
+  version "8.3.2"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
+  integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
+
 uuid@^3.3.2, uuid@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
@@ -7000,10 +7038,13 @@ uuid@^7.0.3:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-7.0.3.tgz#c5c9f2c8cf25dc0a372c4df1441c41f5bd0c680b"
   integrity sha512-DPSke0pXhTZgoF/d+WSt2QaKMCFSfx7QegxEWT+JOuHF5aWrKEn0G+ztjuJg/gG8/ItK+rbPCD/yNv8yyih6Cg==
 
-uuid@^8.0.0, uuid@^8.3.2:
-  version "8.3.2"
-  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
-  integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
+uuidv4@^6.2.13:
+  version "6.2.13"
+  resolved "https://registry.yarnpkg.com/uuidv4/-/uuidv4-6.2.13.tgz#8f95ec5ef22d1f92c8e5d4c70b735d1c89572cb7"
+  integrity sha512-AXyzMjazYB3ovL3q051VLH06Ixj//Knx7QnUSi1T//Ie3io6CpsPu9nVMOx5MoLWh6xV0B9J0hIaxungxXUbPQ==
+  dependencies:
+    "@types/uuid" "8.3.4"
+    uuid "8.3.2"
 
 valid-url@~1.0.9:
   version "1.0.9"

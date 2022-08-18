@@ -10,7 +10,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import * as Linking from "expo-linking";
 import Constants from "expo-constants";
 import Licenses from "./components/Licenses";
-// import GameScreen from "./screens/GameScreen";
+import GameScreen from "./screens/GameScreen";
 import ChallengesScreen from "./screens/AchievementScreen";
 import Preferences from "./screens/PreferencesScreen";
 import * as Analytics from "expo-firebase-analytics";
@@ -97,11 +97,11 @@ const Navigation = () => {
         }}
         initialRouteName="Game"
       >
-        {/* <AppStack.Screen
+        <AppStack.Screen
           name="Game"
           component={GameScreen}
           options={{ header: () => null }}
-        /> */}
+        />
         <AppStack.Screen
           name="Challenges"
           component={ChallengesScreen}
