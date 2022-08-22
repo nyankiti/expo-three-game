@@ -6,15 +6,11 @@ import AchievementsItem from "../components/AchievementsItem";
 import List from "../components/List";
 import Challenges from "../constants/Achievements";
 
-/* recoil */
-import { useAchievementsValue } from "../recoil/achievements";
-
 const challengesListData = Object.keys(Challenges).map((key) => ({
   key,
   ...Challenges[key],
 }));
-function AchievementScreen({ showActionSheetWithOptions }) {
-  const achievements = useAchievementsValue();
+function AchievementScreen({ showActionSheetWithOptions, achievements }) {
   const [filter, setFilter] = React.useState("All");
 
   const _onOpenActionSheet = () => {
@@ -76,9 +72,9 @@ const styles = StyleSheet.create({
   },
 });
 
-// import { connect } from "react-redux";
-// const ConnectedScreen = connect(({ achievements }) => ({ achievements }))(
-//   AchievementScreen
-// );
+import { connect } from "react-redux";
+const ConnectedScreen = connect(({ achievements }) => ({ achievements }))(
+  AchievementScreen
+);
 
-export default connectActionSheet(AchievementScreen);
+export default connectActionSheet(ConnectedScreen);

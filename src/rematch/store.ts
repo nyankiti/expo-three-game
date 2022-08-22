@@ -17,6 +17,7 @@ export const persistPlugin = createRematchPersist({
   //   throttle: 5000,
   version: 2,
   storage: AsyncStorage,
+  key: "expo-three",
 });
 
 export const store = init({

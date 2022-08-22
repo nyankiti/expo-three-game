@@ -3,15 +3,15 @@ import React from "react";
 import { Platform, StyleSheet, View } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-// import { connect } from "react-redux";
+import { connect } from "react-redux";
 
-// import { rewardAdUnitId } from "../constants/Ads";
+import { rewardAdUnitId } from "../constants/Ads";
 import Settings from "../constants/Settings";
-import GameStates from "../Game/GameState";
+import GameStates from "../Game/GameStates";
 import ChallengesButton from "./Button/Challenges";
 import Icon from "./Button/Icon";
 import LeaderboardButton from "./Button/Leaderboard";
-// import LicensesButton from "./Button/LicensesButton";
+import LicensesButton from "./Button/LicensesButton";
 import PWAButton, { usePWAInstallable } from "./Button/PWAButton";
 import ShareButton from "./Button/Share";
 import SoundButton from "./Button/Sound";
@@ -24,19 +24,19 @@ const delay = 100;
 const initialDelay = 100;
 const duration = 500;
 const easing = "ease-out";
-// function AdButton() {
-//   return (
-//     <Icon
-//       name="money"
-//       onPress={async () => {
-//         // Display a rewarded ad
-//         await AdMobRewarded.setAdUnitID(rewardAdUnitId!);
-//         await AdMobRewarded.requestAdAsync();
-//         await AdMobRewarded.showAdAsync();
-//       }}
-//     />
-//   );
-// }
+function AdButton() {
+  return (
+    <Icon
+      name="money"
+      onPress={async () => {
+        // Display a rewarded ad
+        await AdMobRewarded.setAdUnitID(rewardAdUnitId!);
+        await AdMobRewarded.requestAdAsync();
+        await AdMobRewarded.showAdAsync();
+      }}
+    />
+  );
+}
 
 function Footer({ game, screenshot, navigation }) {
   const { bottom } = useSafeAreaInsets();
@@ -82,10 +82,10 @@ function Footer({ game, screenshot, navigation }) {
   }
 
   let adMargin = 0;
-  //   if (!Settings.isPromo && rewardAdUnitId) {
-  //     // views.push(<AdButton />);
-  //     adMargin += 48;
-  //   }
+  if (!Settings.isPromo && rewardAdUnitId) {
+    // views.push(<AdButton />);
+    adMargin += 48;
+  }
   views.push(<PreferencesButton onPress={onPreferencesPress} />);
 
   return (
@@ -126,7 +126,6 @@ const styles = StyleSheet.create({
   },
 });
 
-// export default connect(({ game, screenshot }) => ({ game, screenshot }))(
-//   Footer
-// );
-export default Footer;
+export default connect(({ game, screenshot }) => ({ game, screenshot }))(
+  Footer
+);

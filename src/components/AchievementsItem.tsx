@@ -34,8 +34,16 @@ export default class Item extends React.Component {
     return this.props.isSecret ? "Secret Achievement" : this.props.description;
   }
   render() {
-    const { name, points, isSecret, image, index, onPress, style, ...props } =
-      this.props;
+    const {
+      name,
+      points,
+      isSecret,
+      image,
+      index,
+      onPress,
+      style,
+      ...props
+    } = this.props;
     return (
       <TouchableHighlight
         underlayColor="#eeeeee"

@@ -8,7 +8,7 @@ import {
   Platform,
   StyleSheet,
 } from "react-native";
-import { uuid } from "uuidv4";
+import uuidv4 from "uuid/v4";
 
 export type ResizeEvent = {
   x: number;
@@ -44,7 +44,7 @@ export default class GraphicsView extends React.Component<Props> {
 
   state = {
     appState: AppState.currentState,
-    id: uuid(),
+    id: uuidv4(),
   };
 
   componentWillUnmount() {

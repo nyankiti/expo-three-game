@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   Linking,
 } from "react-native";
+import { connect } from "react-redux";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import Constants from "expo-constants";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -19,23 +20,9 @@ import {
   openOtherPlatform,
   getOtherPlatform,
 } from "../components/Button/SwapPlatformButton";
-/* recoils */
-import {
-  useScoreSetter,
-  initialScoreState,
-  useScoreState,
-} from "../recoil/score";
-import {
-  useStoreReviewSetter,
-  useStoreReviewState,
-} from "../recoil/storeReview";
-import { useRoundsSetter, useRoundsState } from "../recoil/rounds";
-import { useBestRoundsSetter, useBestRoundsState } from "../recoil/bestRounds";
-import { useCurrencySetter, useCurrencyState } from "../recoil/currency";
-import {
-  useAchievementsSetter,
-  useAchievementsState,
-} from "../recoil/achievements";
+import { AdMobRewarded } from "expo-ads-admob";
+import { rewardAdUnitId } from "../constants/Ads";
+import { dispatch } from "../rematch/store";
 
 function Item({
   title,
@@ -100,17 +87,16 @@ function areYouSureAsync(): Promise<boolean> {
   });
 }
 
-function PreferencesScreen() {
+function PreferencesScreen({
+  score,
+  rounds,
+  currency,
+  bestRounds,
+  navigation,
+}) {
   const [taps, setTaps] = React.useState(0);
   const { bottom } = useSafeAreaInsets();
   const canReview = useStoreReview();
-  const [score, setScore] = useScoreState();
-  const [storeReview, setStoreReview] = useStoreReviewState();
-  const [rounds, setRounds] = useRoundsState();
-  const [bestRounds, setBestRounds] = useBestRoundsState();
-  const [currency, setCurrency] = useCurrencyState();
-  const [achievements, setAchievements] = useAchievementsState();
-
   const data = [
     {
       title: "Stats",
@@ -210,7 +196,7 @@ function PreferencesScreen() {
         },
         Platform.OS !== "web" && {
           title: "Deep Linking Scheme",
-          value: `${Constants.manifest?.scheme}://`,
+          value: `${Constants.manifest.scheme}://`,
         },
         {
           title: "Expo SDK",
@@ -240,16 +226,11 @@ function PreferencesScreen() {
           value: "This cannot be undone",
           onPress: async () => {
             if (await areYouSureAsync()) {
-              //   dispatch.score._hardReset();
-              setScore(initialScoreState);
-              //   dispatch.storeReview._reset();
-              setStoreReview({ promptTime: Date.now() });
-              //   dispatch.rounds._reset();
-              setRounds(0);
-              //   dispatch.bestRounds._reset();
-              setBestRounds(0);
-              //   dispatch.currency._reset();
-              setCurrency({ current: 0 });
+              dispatch.score._hardReset();
+              dispatch.storeReview._reset();
+              dispatch.rounds._reset();
+              dispatch.bestRounds._reset();
+              dispatch.currency._reset();
             }
           },
         },
@@ -258,8 +239,7 @@ function PreferencesScreen() {
           value: "This cannot be undone",
           onPress: async () => {
             if (await areYouSureAsync()) {
-              //   dispatch.achievements._reset();
-              setAchievements({});
+              dispatch.achievements._reset();
             }
           },
         },
@@ -291,11 +271,11 @@ const styles = StyleSheet.create({
   },
 });
 
-// const ConnectedScreen = connect(({ score, rounds, bestRounds, currency }) => ({
-//   score,
-//   rounds,
-//   bestRounds,
-//   currency,
-// }))(PreferencesScreen);
+const ConnectedScreen = connect(({ score, rounds, bestRounds, currency }) => ({
+  score,
+  rounds,
+  bestRounds,
+  currency,
+}))(PreferencesScreen);
 
-export default connectActionSheet(PreferencesScreen);
+export default connectActionSheet(ConnectedScreen);

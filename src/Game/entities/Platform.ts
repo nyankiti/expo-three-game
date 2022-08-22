@@ -1,4 +1,4 @@
-import gsap from "gsap";
+import { TweenMax } from "gsap";
 
 import {
   Color,
@@ -156,13 +156,6 @@ class Platform extends GameObject {
           y: 0,
           onComplete: () => (gem.canBeCollected = true),
         });
-        // gsap.to(gem, 0.3, {
-        //     alpha: 1,
-        //     delay: (i + 1) * 0.1, // randomRange(0, 0.2),
-        //     _scale: 1,
-        //     y: 0,
-        //     onComplete: () => (gem.canBeCollected = true),
-        // })
       }
     }
   };

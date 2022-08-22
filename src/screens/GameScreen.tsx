@@ -1,10 +1,16 @@
 import React from "react";
-import { Image, Platform, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import * as Clipboard from "expo-clipboard";
+import * as Clipboard from 'expo-clipboard';
 import AchievementPopup from "../components/AchievementPopup";
-// import { AdMobBanner } from "../components/AdMob";
+import { AdMobBanner } from "../components/AdMob";
 import Footer from "../components/Footer";
 import GraphicsView from "../components/GraphicsView";
 import Paused from "../components/Paused";
@@ -63,7 +69,7 @@ export default function GameScreen({ navigation }) {
     <View style={styles.container} pointerEvents="box-none">
       <Song />
       <InputGameView onLoad={() => setLoading(false)} isPaused={isPaused} />
-      {/* <BottomBannerAd /> */}
+      <BottomBannerAd />
       <ScoreMeta />
       <Footer navigation={navigation} />
       {isPaused && <Paused />}
@@ -79,36 +85,36 @@ export default function GameScreen({ navigation }) {
   );
 }
 
-// function BottomBannerAd() {
-//   const [showAd, setShowAd] = React.useState<boolean>(false);
-//   const { bottom } = useSafeAreaInsets();
+function BottomBannerAd() {
+  const [showAd, setShowAd] = React.useState<boolean>(false);
+  const { bottom } = useSafeAreaInsets();
 
-//   const onBannerError = React.useCallback((errorDescription: string) => {
-//     console.log("Banner error: ", errorDescription);
-//     setShowAd(false);
-//   }, []);
+  const onBannerError = React.useCallback((errorDescription: string) => {
+    console.log("Banner error: ", errorDescription);
+    setShowAd(false);
+  }, []);
 
-//   Clipboard.setString("");
+  Clipboard.setString("");
 
-//   // Test ID, Replace with your-admob-unit-id
-//   const adUnitID = Platform.select({
-//     ios: "ca-app-pub-2312569320461549/6612342018",
-//     android: "ca-app-pub-2312569320461549/6685058859",
-//   });
+  // Test ID, Replace with your-admob-unit-id
+  const adUnitID = Platform.select({
+    ios: "ca-app-pub-2312569320461549/6612342018",
+    android: "ca-app-pub-2312569320461549/6685058859",
+  });
 
-//   const display = showAd ? "flex" : "none";
-//   return (
-//     <View style={{ display, position: "absolute", bottom, left: 0, right: 0 }}>
-//       <AdMobBanner
-//         onAdViewDidReceiveAd={() => setShowAd(true)}
-//         bannerSize="smartBannerPortrait"
-//         adUnitID={adUnitID}
-//         servePersonalizedAds
-//         onDidFailToReceiveAdWithError={onBannerError}
-//       />
-//     </View>
-//   );
-// }
+  const display = showAd ? "flex" : "none";
+  return (
+    <View style={{ display, position: "absolute", bottom, left: 0, right: 0 }}>
+      <AdMobBanner
+        onAdViewDidReceiveAd={() => setShowAd(true)}
+        bannerSize="smartBannerPortrait"
+        adUnitID={adUnitID}
+        servePersonalizedAds
+        onDidFailToReceiveAdWithError={onBannerError}
+      />
+    </View>
+  );
+}
 function SkipGameViewInSimulator({ onLoad }) {
   return (
     <View

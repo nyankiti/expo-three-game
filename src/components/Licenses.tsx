@@ -1,10 +1,11 @@
-import { A } from "@expo/html-elements";
-import * as React from "react";
-import { FlatList, Platform, View } from "react-native";
-import * as Animatable from "react-native-animatable";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import Settings from "../constants/Settings";
-import LicensesListItem from "./LicensesListItem";
+import { A } from '@expo/html-elements';
+import * as React from 'react';
+import { FlatList, Platform, View } from 'react-native';
+import * as Animatable from 'react-native-animatable';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+import Settings from '../constants/Settings';
+import LicensesListItem from './LicensesListItem';
 
 const Data = require("../constants/Licenses");
 
@@ -13,8 +14,7 @@ function extractNameFromGithubUrl(url) {
     return null;
   }
 
-  const reg =
-    /((https?:\/\/)?(www\.)?github\.com\/)?(@|#!\/)?([A-Za-z0-9_]{1,15})(\/([-a-z]{1,20}))?/i;
+  const reg = /((https?:\/\/)?(www\.)?github\.com\/)?(@|#!\/)?([A-Za-z0-9_]{1,15})(\/([-a-z]{1,20}))?/i;
   const components = reg.exec(url);
 
   const { length, [length - 1]: last } = components;
@@ -44,8 +44,7 @@ const licenses = Object.keys(Data).map((key) => {
     version = components[2];
   }
 
-  const reg =
-    /((https?:\/\/)?(www\.)?github\.com\/)?(@|#!\/)?([A-Za-z0-9_]{1,15})(\/([-a-z]{1,20}))?/i;
+  const reg = /((https?:\/\/)?(www\.)?github\.com\/)?(@|#!\/)?([A-Za-z0-9_]{1,15})(\/([-a-z]{1,20}))?/i;
 
   let username = (license.repository || license.licenseUrl)
     .split("https://github.com/")
@@ -110,7 +109,7 @@ export default function Licenses() {
         <Animatable.Image
           animation="slideInUp"
           delay={500}
-          source={require("../../assets/images/evan.png")}
+          source={require("../assets/images/evan.png")}
           style={{
             position: Platform.select({ default: "absolute", web: "fixed" }),
             width: "30%",

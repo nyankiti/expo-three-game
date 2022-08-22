@@ -9,12 +9,10 @@ import {
   View,
   Platform,
 } from "react-native";
-// import { connect } from "react-redux";
+import { connect } from "react-redux";
 import { dispatch } from "../rematch/store";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import AudioManager from "../AudioManager";
-/* recoil */
-import { usePresentAchievementsState } from "../recoil/presentAchievement";
 
 const Colors = {
   darkerGreen: "#000A69",
@@ -95,8 +93,13 @@ class AnimatedCircle extends React.Component {
   }
 
   render() {
-    const { innerColor, outerColor, style, renderComponent, ...props } =
-      this.props;
+    const {
+      innerColor,
+      outerColor,
+      style,
+      renderComponent,
+      ...props
+    } = this.props;
 
     const finalProps = {
       style: [
@@ -323,7 +326,7 @@ class Popup extends React.Component {
 
   async componentDidMount() {
     try {
-      await AudioManager.playAsync("unlock", true);
+      await AudioManager.playAsync("unlock");
     } finally {
       setTimeout(() => {
         this.open();
@@ -504,9 +507,7 @@ class Popup extends React.Component {
   }
 }
 
-function PopupContainer({ navigation }: any) {
-  const [presentAchievement, setPresentAchievement] =
-    usePresentAchievementsState();
+function PopupContainer({ navigation, presentAchievement }) {
   const { top } = useSafeAreaInsets();
   return (
     <View
@@ -528,10 +529,9 @@ function PopupContainer({ navigation }: any) {
   );
 }
 
-// export default connect(({ presentAchievement }) => ({ presentAchievement }))(
-//   PopupContainer
-// );
-export default PopupContainer;
+export default connect(({ presentAchievement }) => ({ presentAchievement }))(
+  PopupContainer
+);
 
 const styles = StyleSheet.create({
   container: {

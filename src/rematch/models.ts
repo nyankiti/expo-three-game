@@ -1,5 +1,5 @@
 // import { dispatch } from "./store";
-// import firebase from "firebase/app";
+import firebase from "firebase/app";
 import { Alert, Dimensions } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 

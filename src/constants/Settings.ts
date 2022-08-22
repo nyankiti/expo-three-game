@@ -1,4 +1,4 @@
-import * as Device from "expo-device";
+import Constants from "expo-constants";
 
 const debug = __DEV__;
 const Settings = {
@@ -11,7 +11,7 @@ const Settings = {
   },
   isPromo: false,
   circleEnabled: true,
-  isSimulator: !Device.isDevice,
+  isSimulator: !Constants.isDevice,
   isFirebaseEnabled: false, // !debug || false,
   isAutoStartEnabled: false, //! debug && true,
   isScreenshotEnabled: false, //!debug || false,

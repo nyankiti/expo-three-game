@@ -1,13 +1,12 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import React from "react";
 import { Platform, StyleSheet } from "react-native";
+
 import AudioManager from "../../AudioManager";
-import { TouchableOpacity } from "react-native";
-/* recoil */
-import { useMutedValue } from "../../recoil/muted";
+import TouchableBounce from "../TouchableBounce";
 
 export default function Icon({
-  onPress = () => {},
+  onPress = () => { },
   size = 24,
   color = "#fff",
   name,
@@ -16,12 +15,11 @@ export default function Icon({
   style,
   iconStyle,
 }: any) {
-  const muted = useMutedValue();
   return (
-    <TouchableOpacity
+    <TouchableBounce
       onPress={onPress}
-      onPressIn={() => AudioManager.playAsync(soundIn, muted)}
-      onPressOut={() => AudioManager.playAsync(soundOut, muted)}
+      onPressIn={() => AudioManager.playAsync(soundIn)}
+      onPressOut={() => AudioManager.playAsync(soundOut)}
       style={[styles.container, style]}
     >
       <FontAwesome
@@ -30,7 +28,7 @@ export default function Icon({
         name={name}
         style={[styles.icon, iconStyle]}
       />
-    </TouchableOpacity>
+    </TouchableBounce>
   );
 }
 

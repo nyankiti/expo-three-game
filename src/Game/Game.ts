@@ -284,8 +284,9 @@ class PillarGroupObject extends GameObject {
     // Go in reverse order to ensure the player gets optimal skipping
     for (let index = this.pillars.length - 1; index > 0; index--) {
       const targetPlatform = this.pillars[index];
-      const distanceFromTarget =
-        playerObject.getActiveItemsDistanceFromObject(targetPlatform);
+      const distanceFromTarget = playerObject.getActiveItemsDistanceFromObject(
+        targetPlatform
+      );
 
       if (distanceFromTarget < targetPlatform.radius)
         return [index, distanceFromTarget];

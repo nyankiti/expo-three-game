@@ -26,7 +26,7 @@ export default function ScoreBadge({
       ]}
     >
       <Image
-        source={require("../../assets/images/expoBadge.png")}
+        source={require("../assets/images/expoBadge.png")}
         style={{
           marginRight: 12,
           resizeMode: "contain",
